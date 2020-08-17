@@ -74,6 +74,7 @@ function draw() {
   
   if(keyDown("space")) {
     trex.velocityY = -10;
+    jump.play();
   }
   
   trex.velocityY = trex.velocityY + 0.8
@@ -85,8 +86,13 @@ function draw() {
   trex.collide(invisibleGround);
   spawnClouds();
   spawnObstacles();
+    
+    if(score > 0 && score % 100 === 0){
+      checkPoint.play();
+    }
   if(obstaclesGroup.isTouching(trex)){
     gameState = END;
+    die.play();
   }
   }
   else if(gameState === END){
